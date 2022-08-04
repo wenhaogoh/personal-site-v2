@@ -31,21 +31,15 @@ jobs:
       - name: Install modules
         run: yarn
 
-      - name: Substitute environment variables for App Engine
+      - name: Substitute environment variables for App Engine and Cloud Build
         env:
           DATABASE_USER: ${{ secrets.DATABASE_USER }}
           DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           GCSQL_CONNECTION_NAME: ${{ secrets.GCSQL_CONNECTION_NAME }}
-        run: envsubst < app.yaml > tmp.yaml && mv tmp.yaml app.yaml
-
-      - name: Substitute environment variables for Cloud Build
-        env:
-          DATABASE_USER: ${{ secrets.DATABASE_USER }}
-          DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          GCSQL_CONNECTION_NAME: ${{ secrets.GCSQL_CONNECTION_NAME }}
-        run: envsubst < deploy/env.sh > tmp.yaml && mv tmp.yaml deploy/env.sh
+        run: |
+          envsubst < app.yaml > tmp.yaml && mv tmp.yaml app.yaml
+          envsubst < deploy/env.sh > tmp.yaml && mv tmp.yaml deploy/env.sh
 
       - id: "auth"
         name: Set up authentication

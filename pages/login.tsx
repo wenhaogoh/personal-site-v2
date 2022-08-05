@@ -25,9 +25,9 @@ const InputContainer = styled.div`
   margin-bottom: 0.5em;
 `;
 
-interface TextInputProps {
+type TextInputProps = {
   value: string;
-}
+};
 
 const TextInput = styled.input<TextInputProps>`
   all: unset;

@@ -3,9 +3,9 @@ import React from "react";
 
 import { Text, Title } from "./Common";
 
-interface Props {
+type Props = {
   post: PostData;
-}
+};
 
 const Post: React.FC<Props> = ({ post }) => {
   return (

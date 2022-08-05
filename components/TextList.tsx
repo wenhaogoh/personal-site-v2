@@ -5,9 +5,9 @@ export const StyledUl = styled.ul`
   padding-left: 1.1em;
 `;
 
-interface Props {
+type Props = {
   items: string[];
-}
+};
 
 const TextList: React.FC<Props> = ({ items }) => {
   return (

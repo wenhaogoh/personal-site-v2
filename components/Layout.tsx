@@ -10,9 +10,9 @@ const Container = styled.div`
   padding: 0 1em;
 `;
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (

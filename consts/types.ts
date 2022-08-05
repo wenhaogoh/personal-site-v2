@@ -1,9 +1,9 @@
-export interface NavLink {
+export type NavLink = {
   label: string;
   link: string;
-}
+};
 
-export interface Experience {
+export type Experience = {
   role: string;
   company: string;
   link: string;
@@ -11,16 +11,16 @@ export interface Experience {
   end: string;
   descriptions: string[];
   tags: Tag[];
-}
+};
 
-export interface Project {
+export type Project = {
   title: string;
   github: string;
   descriptions: string[];
   tags: Tag[];
-}
+};
 
-export interface Tag {
+export type Tag = {
   label: string;
   link: string;
-}
+};

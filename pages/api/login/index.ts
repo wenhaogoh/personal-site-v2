@@ -34,7 +34,7 @@ handler.post(async (req: CustomRequest<LoginRequest>, res) => {
     },
     ACCESS_TOKEN_SECRET,
     {
-      expiresIn: "10s",
+      expiresIn: "10m",
     }
   );
 

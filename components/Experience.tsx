@@ -32,9 +32,9 @@ const StartEnd = styled.div`
   }
 `;
 
-interface Props {
+type Props = {
   experience: ExperienceData;
-}
+};
 
 const Experience: React.FC<Props> = ({ experience }) => {
   return (

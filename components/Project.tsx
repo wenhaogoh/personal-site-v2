@@ -6,9 +6,9 @@ import { Link } from "./Common";
 import TagList from "./TagList";
 import TextList from "./TextList";
 
-interface Props {
+type Props = {
   project: ProjectData;
-}
+};
 
 const Header = styled.div`
   display: flex;

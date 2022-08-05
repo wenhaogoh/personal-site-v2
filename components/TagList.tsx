@@ -19,9 +19,9 @@ const Tag = styled.li`
   margin-bottom: 0.5em;
 `;
 
-interface Props {
+type Props = {
   items: TagData[];
-}
+};
 
 const TagList: React.FC<Props> = ({ items }) => {
   return (

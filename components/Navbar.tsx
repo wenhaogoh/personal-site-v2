@@ -1,9 +1,12 @@
+import { deleteCookie } from "cookies-next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
-import { navLinks } from "../consts/data";
-import { Link as CustomLink } from "./Common";
+import { ACCESS_TOKEN_COOKIE_KEY } from "../consts";
+import { adminNavLinks, navLinks } from "../consts/data";
+import { Button, Link as CustomLink } from "./Common";
 
 const StyledNav = styled.nav`
   position: sticky;
@@ -13,8 +16,7 @@ const StyledNav = styled.nav`
   z-index: 1;
 `;
 
-const StyledUl = styled.ul`
-  list-style-type: none;
+const LinksContainer = styled.div`
   padding-left: 0;
   padding-top: 1rem;
   margin-top: 0;
@@ -22,39 +24,53 @@ const StyledUl = styled.ul`
   justify-content: space-between;
 `;
 
-const StyledLi = styled.li`
-  display: inline;
-`;
-
-const RightLinksContainer = styled.div`
+const RightLinksContainer = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   @media only screen and (max-width: 425px) {
   }
 `;
 
-const RightLink = styled(CustomLink)`
-  display: inline-block;
+const StyledLi = styled.li`
+  display: inline;
   margin-left: 1em;
 `;
 
+const RightLink = styled(CustomLink)`
+  display: inline-block;
+`;
+
 const Navbar: React.FC = () => {
+  const router = useRouter();
+  const isAdmin = router.pathname.startsWith("/admin");
+  const links = isAdmin ? adminNavLinks : navLinks;
+  const onLogoutHandler = () => {
+    deleteCookie(ACCESS_TOKEN_COOKIE_KEY);
+    router.push("/login");
+  };
+
   return (
     <StyledNav>
-      <StyledUl>
-        <StyledLi>
-          <Link href="/" passHref>
-            <CustomLink>wenhao.</CustomLink>
-          </Link>
-        </StyledLi>
+      <LinksContainer>
+        <Link href={isAdmin ? "/admin" : "/"} passHref>
+          <CustomLink>{isAdmin ? "admin." : "wenhao."}</CustomLink>
+        </Link>
         <RightLinksContainer>
-          {navLinks.map((navLink, index) => (
+          {links.map((navLink, index) => (
             <StyledLi key={index}>
               <Link href={navLink.link} passHref>
                 <RightLink>{navLink.label}.</RightLink>
               </Link>
             </StyledLi>
           ))}
+          {isAdmin && (
+            <StyledLi>
+              <Button onClick={onLogoutHandler}>logout.</Button>
+            </StyledLi>
+          )}
         </RightLinksContainer>
-      </StyledUl>
+      </LinksContainer>
       <hr />
     </StyledNav>
   );

@@ -19,3 +19,16 @@ export const Link = styled.a`
     text-decoration: underline;
   }
 `;
+
+export const Button = styled.button`
+  all: unset;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+    text-decoration: none;
+  }
+`;

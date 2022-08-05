@@ -166,3 +166,18 @@ export const navLinks: NavLink[] = [
     link: "/contact",
   },
 ];
+
+export const adminNavLinks: NavLink[] = [
+  {
+    label: "about",
+    link: "/admin/about",
+  },
+  {
+    label: "blog",
+    link: "/admin/blog",
+  },
+  {
+    label: "contact",
+    link: "/admin/contact",
+  },
+];

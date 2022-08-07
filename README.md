@@ -12,7 +12,7 @@
 ```bash
 docker compose up -d # Initialise docker container
 
-yarn prisma migrate dev # Execute database migrations
+yarn migrate # Execute database migrations
 
 yarn dev # Start the server
 ```

@@ -31,7 +31,7 @@ const Home: NextPage = () => {
         This website is not just my portfolio, but also also a playground for me
         to experiment with technologies, learn new frameworks and build cool
         stuff! It is powered by NextJS, written in Typescript and deployed on
-        Google Cloud Platform.
+        Heroku.
       </Text>
       <Links>
         <CustomLink

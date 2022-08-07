@@ -1,10 +1,9 @@
 import { StatusCodes } from "http-status-codes";
-import type { NextApiRequest, NextApiResponse } from "next";
-import nextConnect from "next-connect";
 
 import prisma from "../../prisma";
+import getHandler from "../../utils/handler";
 
-const handler = nextConnect<NextApiRequest, NextApiResponse>();
+const handler = getHandler();
 
 handler.get(async (_req, res) => {
   const users = await prisma.user.findMany();

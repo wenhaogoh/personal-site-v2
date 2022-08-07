@@ -1,14 +1,13 @@
 import { setCookie } from "cookies-next";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
-import type { NextApiRequest, NextApiResponse } from "next";
-import nextConnect from "next-connect";
 
 import { ACCESS_TOKEN_COOKIE_KEY, ACCESS_TOKEN_SECRET } from "../../../consts";
 import { CustomRequest, LoginRequest } from "../../../fetch/types";
 import prisma from "../../../prisma";
+import getHandler from "../../../utils/handler";
 
-const handler = nextConnect<NextApiRequest, NextApiResponse>();
+const handler = getHandler();
 
 handler.post(async (req: CustomRequest<LoginRequest>, res) => {
   const { username, password } = req.body;

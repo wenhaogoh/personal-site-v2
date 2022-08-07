@@ -1,13 +1,13 @@
 import { Post } from "@prisma/client";
 import { StatusCodes } from "http-status-codes";
-import type { NextApiRequest, NextApiResponse } from "next";
-import nextConnect from "next-connect";
+import type { NextApiResponse } from "next";
 import slugify from "slugify";
 
 import { CreatePostRequest, CustomRequest } from "../../fetch/types";
 import prisma from "../../prisma";
+import getHandler from "../../utils/handler";
 
-const handler = nextConnect<NextApiRequest, NextApiResponse>();
+const handler = getHandler();
 
 handler.get(async (_req, res: NextApiResponse<Post[]>) => {
   const posts = await prisma.post.findMany();

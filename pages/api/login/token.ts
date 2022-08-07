@@ -1,12 +1,11 @@
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
-import type { NextApiRequest, NextApiResponse } from "next";
-import nextConnect from "next-connect";
 
 import { ACCESS_TOKEN_SECRET } from "../../../consts";
 import { CustomRequest, VerifyAccessTokenRequest } from "../../../fetch/types";
+import getHandler from "../../../utils/handler";
 
-const handler = nextConnect<NextApiRequest, NextApiResponse>();
+const handler = getHandler();
 
 handler.post((req: CustomRequest<VerifyAccessTokenRequest>, res) => {
   const { accessToken } = req.body;

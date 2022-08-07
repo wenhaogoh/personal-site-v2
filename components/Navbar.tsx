@@ -45,6 +45,7 @@ const Navbar: React.FC = () => {
   const router = useRouter();
   const isAdmin = router.pathname.startsWith("/admin");
   const links = isAdmin ? adminNavLinks : navLinks;
+
   const onLogoutHandler = () => {
     deleteCookie(ACCESS_TOKEN_COOKIE_KEY);
     router.push("/login");

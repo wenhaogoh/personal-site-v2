@@ -78,7 +78,6 @@ const Login: NextPage = () => {
 
     Authentication.login(formData)
       .then(() => {
-        setLoading(false);
         router.push("/admin");
       })
       .catch((err) => {

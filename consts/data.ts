@@ -8,7 +8,7 @@ export const experiences: Experience[] = [
     start: "May 2022",
     end: "July 2022",
     descriptions: [
-      "Interned under the International Payments Team working the company's payment platform services.",
+      "Interned under the International Payments Team working on the company's payment platform services.",
       "Drove a summer-long project to implement a new payment instrument authorization token format.",
       "Completed project extension of adding a new endpoint to retrieve token information.",
       "Participated in requirements gathering, brainstorming and story mapping sessions.",

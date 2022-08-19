@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import styled from "styled-components";
 
+import { TextInput } from "../components/Common";
 import { Authentication } from "../fetch";
 import { LoginRequest } from "../fetch/types";
 
@@ -23,15 +24,6 @@ const Form = styled.form`
 
 const InputContainer = styled.div`
   margin-bottom: 0.5em;
-`;
-
-type TextInputProps = {
-  value: string;
-};
-
-const TextInput = styled.input<TextInputProps>`
-  all: unset;
-  ${(props) => (props.value.length ? "transparent " : "black")};
 `;
 
 const Submit = styled.input.attrs({

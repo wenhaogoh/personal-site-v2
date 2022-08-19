@@ -32,3 +32,9 @@ export const Button = styled.button`
     text-decoration: none;
   }
 `;
+
+export const TextInput = styled.input`
+  all: unset;
+  border: 2px solid black;
+  padding: 0.2em;
+`;

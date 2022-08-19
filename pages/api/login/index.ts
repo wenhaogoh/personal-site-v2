@@ -13,7 +13,7 @@ handler.post(async (req: CustomRequest<LoginRequest>, res) => {
   const { username, password } = req.body;
   const user = await prisma.user.findFirst({
     where: {
-      name: {
+      username: {
         equals: username,
       },
       password: {

@@ -4,9 +4,43 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
-import { ACCESS_TOKEN_COOKIE_KEY } from "../consts";
-import { adminNavLinks, navLinks } from "../consts/data";
+import { ENV } from "../consts";
 import { Button, Link as CustomLink } from "./Common";
+
+type NavLink = {
+  label: string;
+  link: string;
+};
+
+const navLinks: NavLink[] = [
+  {
+    label: "about",
+    link: "/about",
+  },
+  {
+    label: "blog",
+    link: "/blog",
+  },
+  {
+    label: "contact",
+    link: "/contact",
+  },
+];
+
+const adminNavLinks: NavLink[] = [
+  {
+    label: "about",
+    link: "/admin/about",
+  },
+  {
+    label: "blog",
+    link: "/admin/blog",
+  },
+  {
+    label: "contact",
+    link: "/admin/contact",
+  },
+];
 
 const StyledNav = styled.nav`
   position: sticky;
@@ -47,7 +81,7 @@ const Navbar: React.FC = () => {
   const links = isAdmin ? adminNavLinks : navLinks;
 
   const onLogoutHandler = () => {
-    deleteCookie(ACCESS_TOKEN_COOKIE_KEY);
+    deleteCookie(ENV.ACCESS_TOKEN_COOKIE_KEY);
     router.push("/login");
   };
 

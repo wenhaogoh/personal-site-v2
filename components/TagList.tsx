@@ -1,7 +1,7 @@
+import { Tag as TagData } from "@prisma/client";
 import React from "react";
 import styled from "styled-components";
 
-import { Tag as TagData } from "../consts/types";
 import { Link } from "./Common";
 
 const StyledUl = styled.ul`
@@ -28,7 +28,11 @@ const TagList: React.FC<Props> = ({ items }) => {
     <StyledUl>
       {items.map((item, index) => (
         <Tag key={index}>
-          <Link target="_blank" rel="noopener noreferrer" href={item.link}>
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href={item.link || undefined}
+          >
             {item.label}
           </Link>
         </Tag>

@@ -24,17 +24,60 @@ model Post {
 model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique
-  password String
-  username String
+  username String   @unique @db.VarChar(255)
+  password String   @db.VarChar(255)
   posts    Post[]
 
   @@map("users")
 }
 
 model Tag {
-  id       Int      @id @default(autoincrement())
-  label    String   @unique @db.VarChar(255)
-  link     String?  
+  id           Int      @id @default(autoincrement())
+  label        String   @unique @db.VarChar(255)
+  link         String?
+  experiences  Experience[]
+  projects     Project[]
 
   @@map("tags") 
+}
+
+model Experience {
+  id                      Int      @id @default(autoincrement())
+  role                    String   @db.VarChar(255)
+  company                 String   @db.VarChar(255)
+  link                    String?
+  start                   DateTime
+  end                     DateTime?
+  experienceDescriptions  ExperienceDescription[]
+  tags                    Tag[]
+  
+  @@map("experiences")
+}
+
+model ExperienceDescription {
+  id            Int         @id @default(autoincrement())
+  content       String      @db.VarChar(255)
+  experience    Experience  @relation(fields: [experienceId], references: [id])
+  experienceId  Int
+
+  @@map("experience_descriptions")
+}
+
+model Project {
+  id                   Int      @id @default(autoincrement())
+  title                String   @db.VarChar(255)
+  github               String
+  projectDescriptions  ProjectDescription[]
+  tags                 Tag[]
+
+  @@map("projects")
+}
+
+model ProjectDescription {
+  id            Int         @id @default(autoincrement())
+  content       String      @db.VarChar(255)
+  project       Project     @relation(fields: [projectId], references: [id])
+  projectId     Int
+
+  @@map("project_descriptions")
 }

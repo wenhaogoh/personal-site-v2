@@ -1,22 +1,22 @@
-import { Post as PostData } from "@prisma/client";
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { NextPage } from "next";
 
 import { Title } from "../components/Common";
-import prisma from "../prisma";
+import { QUERY_KEYS } from "../consts";
+import { Posts } from "../fetch";
 
-type Props = {
-  posts: PostData[];
-};
-
-const Blog: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = () => {
+const Blog: NextPage = () => {
   return <Title>work in progress.</Title>;
 };
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await prisma.post.findMany();
+export const getStaticProps = async () => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery([QUERY_KEYS.POSTS], Posts.getPosts);
+
   return {
     props: {
-      posts: JSON.parse(JSON.stringify(posts)),
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };

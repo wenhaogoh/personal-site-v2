@@ -1,21 +1,13 @@
 import { NextPage } from "next";
 
-import { Title } from "../components/Common";
-import Experience from "../components/Experience";
-import Project from "../components/Project";
-import { experiences, projects } from "../consts/data";
+import Experiences from "../components/Experiences";
+import Projects from "../components/Projects";
 
 const About: NextPage = () => {
   return (
     <>
-      <Title>experience.</Title>
-      {experiences.map((experience, index) => (
-        <Experience key={index} experience={experience} />
-      ))}
-      <Title>projects.</Title>
-      {projects.map((project, index) => (
-        <Project key={index} project={project} />
-      ))}
+      <Experiences />
+      <Projects />
     </>
   );
 };

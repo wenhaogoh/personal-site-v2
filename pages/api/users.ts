@@ -11,8 +11,9 @@ handler.get(async (_req, res) => {
 });
 
 handler.post(async (req, res) => {
+  const { body: data } = req;
   const user = await prisma.user.create({
-    data: req.body,
+    data,
   });
   res.status(StatusCodes.CREATED).send(user);
 });

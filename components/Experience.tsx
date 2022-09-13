@@ -1,7 +1,11 @@
+import {
+  Experience as ExperienceDto,
+  ExperienceDescription,
+  Tag,
+} from "@prisma/client";
 import React from "react";
 import styled from "styled-components";
 
-import { Experience as ExperienceData } from "../consts/types";
 import { UnderlinedLink } from "./Common";
 import TagList from "./TagList";
 import TextList from "./TextList";
@@ -33,7 +37,10 @@ const StartEnd = styled.div`
 `;
 
 type Props = {
-  experience: ExperienceData;
+  experience: ExperienceDto & {
+    experienceDescriptions: ExperienceDescription[];
+    tags: Tag[];
+  };
 };
 
 const Experience: React.FC<Props> = ({ experience }) => {
@@ -47,18 +54,36 @@ const Experience: React.FC<Props> = ({ experience }) => {
             <UnderlinedLink
               target="_blank"
               rel="noopener noreferrer"
-              href={experience.link}
+              href={experience.link || undefined}
             >
               {experience.company}
             </UnderlinedLink>
           </Role>
         </RoleCompany>
         <StartEnd>
-          <span>{experience.start} -</span>
-          <span> {experience.end}</span>
+          <span>
+            {new Date(experience.start).toLocaleString("en-US", {
+              month: "short",
+              year: "numeric",
+            })}
+            &nbsp;-
+          </span>
+          <span>
+            &nbsp;
+            {experience.end
+              ? new Date(experience.end).toLocaleString("default", {
+                  month: "short",
+                  year: "numeric",
+                })
+              : "Present"}
+          </span>
         </StartEnd>
       </Header>
-      <TextList items={experience.descriptions} />
+      <TextList
+        items={experience.experienceDescriptions.map(
+          (description) => description.content
+        )}
+      />
       <TagList items={experience.tags} />
       <br />
     </>

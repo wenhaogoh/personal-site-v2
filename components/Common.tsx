@@ -35,6 +35,25 @@ export const Button = styled.button`
 
 export const TextInput = styled.input`
   all: unset;
-  border: 2px solid black;
+  border: 2px solid;
   padding: 0.2em;
+
+  &:disabled {
+    border-color: transparent;
+  }
+`;
+
+export const Table = styled.table`
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  button ~ button {
+    padding-left: 1em;
+  }
+  th,
+  td {
+    height: 1.2em;
+    border: 2px solid;
+    padding: 0.2em;
+  }
 `;

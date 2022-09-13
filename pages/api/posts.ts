@@ -3,8 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import type { NextApiResponse } from "next";
 import slugify from "slugify";
 
-import { CreatePostRequest, CustomRequest } from "../../fetch/types";
 import prisma from "../../prisma";
+import { CreatePostBody, CustomBodyRequest } from "../../shared/types";
 import getHandler from "../../utils/handler";
 
 const handler = getHandler();
@@ -15,11 +15,15 @@ handler.get(async (_req, res: NextApiResponse<Post[]>) => {
 });
 
 handler.post(
-  async (req: CustomRequest<CreatePostRequest>, res: NextApiResponse<Post>) => {
-    const slug = slugify(req.body.title);
+  async (
+    req: CustomBodyRequest<CreatePostBody>,
+    res: NextApiResponse<Post>
+  ) => {
+    const { body } = req;
+    const slug = slugify(body.title);
     const post = await prisma.post.create({
       data: {
-        ...req.body,
+        ...body,
         slug,
       },
     });

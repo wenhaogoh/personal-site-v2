@@ -2,8 +2,8 @@ import { NextPage } from "next";
 
 import { Title } from "../../components/Common";
 
-const Admin: NextPage = () => {
+const AdminHome: NextPage = () => {
   return <Title>work in progress.</Title>;
 };
 
-export default Admin;
+export default AdminHome;

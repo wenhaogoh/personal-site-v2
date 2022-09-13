@@ -1,13 +1,16 @@
+import { Project as ProjectDto, ProjectDescription, Tag } from "@prisma/client";
 import React from "react";
 import styled from "styled-components";
 
-import { Project as ProjectData } from "../consts/types";
 import { Link } from "./Common";
 import TagList from "./TagList";
 import TextList from "./TextList";
 
 type Props = {
-  project: ProjectData;
+  project: ProjectDto & {
+    projectDescriptions: ProjectDescription[];
+    tags: Tag[];
+  };
 };
 
 const Header = styled.div`
@@ -24,7 +27,11 @@ const Project: React.FC<Props> = ({ project }) => {
           github.
         </Link>
       </Header>
-      <TextList items={project.descriptions} />
+      <TextList
+        items={project.projectDescriptions.map(
+          (description) => description.content
+        )}
+      />
       <TagList items={project.tags} />
       <br />
     </>

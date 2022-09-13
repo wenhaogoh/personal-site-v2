@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { ChangeEventHandler, FormEventHandler, useState } from "react";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import { TextInput } from "../components/Common";
-import { Authentication } from "../fetch";
-import { LoginRequest } from "../fetch/types";
+import { useLogin } from "../hooks/authentication";
+import { LoginRequestBody } from "../shared/types";
 
 const Container = styled.div`
   display: flex;
@@ -44,65 +44,30 @@ const Submit = styled.input.attrs({
 
 const Login: NextPage = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<LoginRequest>({
-    username: "",
-    password: "",
+  const { login, isLoading, isSuccess } = useLogin(() => {
+    router.push("/admin");
   });
-
-  const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
-
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const onSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-
-    if (!formData.username || !formData.password) {
-      return;
-    }
-
-    setLoading(true);
-
-    Authentication.login(formData)
-      .then(() => {
-        router.push("/admin");
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  };
+  const { register, handleSubmit } = useForm<LoginRequestBody>();
 
   return (
     <Container>
-      <Form onSubmit={onSubmitHandler}>
+      <Form onSubmit={handleSubmit((data) => login(data))}>
         <InputContainer>
           <label htmlFor="username">username: </label>
           <TextInput
-            id="username"
-            name="username"
             autoComplete="username"
-            value={formData.username}
-            onChange={onChangeHandler}
+            {...register("username", { required: true })}
           />
         </InputContainer>
         <InputContainer>
           <label htmlFor="password">password: </label>
           <TextInput
-            id="password"
             type="password"
-            name="password"
             autoComplete="current-password"
-            value={formData.password}
-            onChange={onChangeHandler}
+            {...register("password", { required: true })}
           />
         </InputContainer>
-        <Submit disabled={loading} />
+        <Submit disabled={isLoading || isSuccess} />
       </Form>
     </Container>
   );

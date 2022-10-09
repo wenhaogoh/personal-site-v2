@@ -14,5 +14,7 @@ docker compose up -d # Initialise docker container
 
 yarn migrate # Execute database migrations
 
+yarn seed # Seed the database
+
 yarn dev # Start the server
 ```

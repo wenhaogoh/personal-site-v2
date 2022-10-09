@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "../consts";
-import { Projects } from "../fetch";
+import { QUERY_KEYS } from "../../shared/consts";
+import { Projects } from "../api";
 
 export const useGetProjects = () => {
   const { data: projects } = useQuery(

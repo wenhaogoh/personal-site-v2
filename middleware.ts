@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { ENV } from "./consts";
-import { Authentication } from "./fetch";
+import { Authentication } from "./frontend/api";
+import { ENV } from "./shared/consts";
 
 export const middleware = async (req: NextRequest) => {
   if (req.nextUrl.pathname.startsWith("/login")) {

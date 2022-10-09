@@ -1,9 +1,9 @@
 import { dehydrate, QueryClient } from "@tanstack/react-query";
 import { NextPage } from "next";
 
-import { Title } from "../components/Common";
-import { QUERY_KEYS } from "../consts";
-import { Posts } from "../fetch";
+import { Posts } from "../frontend/api";
+import { Title } from "../frontend/components/Common";
+import { QUERY_KEYS } from "../shared/consts";
 
 const Blog: NextPage = () => {
   return <Title>work in progress.</Title>;

@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 
-import { ENV } from "../../../consts";
+import { ENV } from "../../../shared/consts";
 import {
   CustomBodyRequest,
   VerifyAccessTokenBody,

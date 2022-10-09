@@ -1,16 +1,13 @@
-import { Project as ProjectDto, ProjectDescription, Tag } from "@prisma/client";
 import React from "react";
 import styled from "styled-components";
 
+import { GetProjectsDto } from "../../shared/types";
 import { Link } from "./Common";
 import TagList from "./TagList";
 import TextList from "./TextList";
 
 type Props = {
-  project: ProjectDto & {
-    projectDescriptions: ProjectDescription[];
-    tags: Tag[];
-  };
+  project: GetProjectsDto;
 };
 
 const Header = styled.div`

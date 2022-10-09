@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
-import { TextInput } from "../components/Common";
-import { useLogin } from "../hooks/authentication";
+import { TextInput } from "../frontend/components/Common";
+import { useLogin } from "../frontend/hooks/login";
 import { LoginRequestBody } from "../shared/types";
 
 const Container = styled.div`
@@ -43,10 +42,7 @@ const Submit = styled.input.attrs({
 `;
 
 const Login: NextPage = () => {
-  const router = useRouter();
-  const { login, isLoading, isSuccess } = useLogin(() => {
-    router.push("/admin");
-  });
+  const { login, isLoading, isSuccess } = useLogin();
   const { register, handleSubmit } = useForm<LoginRequestBody>();
 
   return (

@@ -1,11 +1,7 @@
-import {
-  Experience as ExperienceDto,
-  ExperienceDescription,
-  Tag,
-} from "@prisma/client";
 import React from "react";
 import styled from "styled-components";
 
+import { GetExperiencesDto } from "../../shared/types";
 import { UnderlinedLink } from "./Common";
 import TagList from "./TagList";
 import TextList from "./TextList";
@@ -37,10 +33,7 @@ const StartEnd = styled.div`
 `;
 
 type Props = {
-  experience: ExperienceDto & {
-    experienceDescriptions: ExperienceDescription[];
-    tags: Tag[];
-  };
+  experience: GetExperiencesDto;
 };
 
 const Experience: React.FC<Props> = ({ experience }) => {

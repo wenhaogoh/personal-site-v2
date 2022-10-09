@@ -1,6 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 
 import prisma from "../../prisma";
+import encrypt from "../../utils/encryptor";
 import getHandler from "../../utils/handler";
 
 const handler = getHandler();
@@ -11,11 +12,17 @@ handler.get(async (_req, res) => {
 });
 
 handler.post(async (req, res) => {
-  const { body: data } = req;
+  const {
+    body: { email, username, password },
+  } = req;
   const user = await prisma.user.create({
-    data,
+    data: {
+      email,
+      username,
+      password: encrypt(password),
+    },
   });
-  res.status(StatusCodes.CREATED).send(user);
+  res.status(StatusCodes.CREATED).send({ email, username });
 });
 
 export default handler;

@@ -2,9 +2,10 @@ import { setCookie } from "cookies-next";
 import { StatusCodes } from "http-status-codes";
 import jwt from "jsonwebtoken";
 
-import { ENV } from "../../../consts";
 import prisma from "../../../prisma";
+import { ENV } from "../../../shared/consts";
 import { CustomBodyRequest, LoginRequestBody } from "../../../shared/types";
+import encrypt from "../../../utils/encryptor";
 import getHandler from "../../../utils/handler";
 
 const handler = getHandler();
@@ -17,7 +18,7 @@ handler.post(async (req: CustomBodyRequest<LoginRequestBody>, res) => {
         equals: username,
       },
       password: {
-        equals: password,
+        equals: encrypt(password),
       },
     },
   });

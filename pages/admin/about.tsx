@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 
-import { Title } from "../../components/Common";
+import TagTable from "../../frontend/components/TagTable";
 
 const AdminAbout: NextPage = () => {
-  return <Title>work in progress.</Title>;
+  return <TagTable />;
 };
 
 export default AdminAbout;

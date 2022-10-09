@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
 
-import { Link, Text } from "../components/Common";
+import { Link, Text } from "../frontend/components/Common";
 
 const Links = styled.div`
   display: flex;

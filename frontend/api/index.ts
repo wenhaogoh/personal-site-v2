@@ -1,22 +1,17 @@
-import {
-  Experience,
-  ExperienceDescription,
-  Post,
-  Project,
-  ProjectDescription,
-  Tag,
-} from "@prisma/client";
+import { Post, Tag } from "@prisma/client";
 
-import { ENV } from "../consts";
+import { ENV } from "../../shared/consts";
 import {
+  GetExperiencesDto,
+  GetProjectsDto,
   LoginRequestBody,
-  UpdateTagBody,
+  UpdateTagMutation,
   VerifyAccessTokenBody,
-} from "../shared/types";
+} from "../../shared/types";
 
 const responseBody = (res: Response) => {
   if (!res.ok) {
-    throw new Error(res.statusText);
+    return Promise.reject(res.statusText);
   }
   return res.json();
 };
@@ -42,7 +37,7 @@ export const Authentication = {
   login: (body: LoginRequestBody): Promise<null> =>
     requests.post("/api/login", body),
   verify: (body: VerifyAccessTokenBody): Promise<null> =>
-    requests.post("/api/login/token", body),
+    requests.post("/api/login/verify", body),
 };
 
 export const Posts = {
@@ -51,29 +46,15 @@ export const Posts = {
 
 export const Tags = {
   getTags: (): Promise<Tag[]> => requests.get("/api/tags"),
-  updateTag: ({
-    id,
-    body,
-  }: {
-    id: number;
-    body: UpdateTagBody;
-  }): Promise<Tag> => requests.put(`/api/tags/${id}`, body),
+  updateTag: ({ id, label, link }: UpdateTagMutation): Promise<Tag> =>
+    requests.put(`/api/tags/${id}`, { label, link }),
 };
 
 export const Experiences = {
-  getExperiences: (): Promise<
-    (Experience & {
-      experienceDescriptions: ExperienceDescription[];
-      tags: Tag[];
-    })[]
-  > => requests.get("/api/experiences"),
+  getExperiences: (): Promise<GetExperiencesDto[]> =>
+    requests.get("/api/experiences"),
 };
 
 export const Projects = {
-  getProjects: (): Promise<
-    (Project & {
-      projectDescriptions: ProjectDescription[];
-      tags: Tag[];
-    })[]
-  > => requests.get("/api/projects"),
+  getProjects: (): Promise<GetProjectsDto[]> => requests.get("/api/projects"),
 };

@@ -1,4 +1,5 @@
-import "../styles/globals.css";
+import "../frontend/styles/globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import {
   Hydrate,
@@ -7,8 +8,9 @@ import {
 } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
-import Layout from "../components/Layout";
+import Layout from "../frontend/components/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -19,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        <ToastContainer />
       </Hydrate>
     </QueryClientProvider>
   );

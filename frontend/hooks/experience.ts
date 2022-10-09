@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { QUERY_KEYS } from "../consts";
-import { Experiences } from "../fetch";
+import { QUERY_KEYS } from "../../shared/consts";
+import { Experiences } from "../api";
 
 export const useGetExperiences = () => {
   const { data: experiences } = useQuery(

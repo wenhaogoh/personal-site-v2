@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
-import { ENV } from "../consts";
+import { ENV } from "../../shared/consts";
 import { Button, Link as CustomLink } from "./Common";
 
 type NavLink = {

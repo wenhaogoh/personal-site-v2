@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
-import Experiences from "../components/Experiences";
-import Projects from "../components/Projects";
+import Experiences from "../frontend/components/Experiences";
+import Projects from "../frontend/components/Projects";
 
 const About: NextPage = () => {
   return (

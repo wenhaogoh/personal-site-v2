@@ -25,7 +25,7 @@ model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique
   username String   @unique @db.VarChar(255)
-  password String   @db.VarChar(255)
+  password String   @db.VarChar(64)
   posts    Post[]
 
   @@map("users")
@@ -38,7 +38,7 @@ model Tag {
   experiences  Experience[]
   projects     Project[]
 
-  @@map("tags") 
+  @@map("tags")
 }
 
 model Experience {

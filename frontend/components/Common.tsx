@@ -56,4 +56,7 @@ export const Table = styled.table`
     border: 2px solid;
     padding: 0.2em;
   }
+  td {
+    text-align: left;
+  }
 `;

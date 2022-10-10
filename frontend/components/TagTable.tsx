@@ -10,8 +10,12 @@ import {
 } from "react-table";
 import styled from "styled-components";
 
-import { useGetTags, useUpdateTags } from "../hooks/tags";
-import { Table, Title } from "./Common";
+import { useUpdateTags } from "../hooks/tags";
+import { Table } from "./Common";
+
+type Props = {
+  tags: Tag[];
+};
 
 type RowState = {
   canEdit: boolean;
@@ -43,8 +47,7 @@ const ActionsContainer = styled.div`
   align-items: center;
 `;
 
-const TagTable: React.FC = () => {
-  const { tags } = useGetTags();
+const TagTable: React.FC<Props> = ({ tags }) => {
   const { updateTag, isLoading } = useUpdateTags();
 
   const columns = useMemo<Column<Tag>[]>(
@@ -145,39 +148,36 @@ const TagTable: React.FC = () => {
   );
 
   return (
-    <>
-      <Title>tags.</Title>
-      <Table>
-        <thead>
-          {headerGroups.map((headerGroup, index) => (
-            <tr key={index}>
-              {headerGroup.headers.map((column, index) => (
-                <th
-                  {...column.getHeaderProps({
-                    style: { width: column.width },
-                  })}
-                  key={index}
-                >
-                  {column.render("Header")}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {rows.map((row, index) => {
-            prepareRow(row);
-            return (
-              <tr key={index}>
-                {row.cells.map((cell, index) => {
-                  return <td key={index}>{cell.render("Cell")}</td>;
+    <Table>
+      <thead>
+        {headerGroups.map((headerGroup, index) => (
+          <tr key={index}>
+            {headerGroup.headers.map((column, index) => (
+              <th
+                {...column.getHeaderProps({
+                  style: { width: column.width },
                 })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </>
+                key={index}
+              >
+                {column.render("Header")}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody>
+        {rows.map((row, index) => {
+          prepareRow(row);
+          return (
+            <tr key={index}>
+              {row.cells.map((cell, index) => {
+                return <td key={index}>{cell.render("Cell")}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </Table>
   );
 };
 

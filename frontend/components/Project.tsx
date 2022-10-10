@@ -29,7 +29,7 @@ const Project: React.FC<Props> = ({ project }) => {
           (description) => description.content
         )}
       />
-      <TagList items={project.tags} />
+      <TagList tags={project.tags} />
       <br />
     </>
   );

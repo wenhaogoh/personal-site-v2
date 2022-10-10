@@ -77,7 +77,7 @@ const Experience: React.FC<Props> = ({ experience }) => {
           (description) => description.content
         )}
       />
-      <TagList items={experience.tags} />
+      <TagList tags={experience.tags} />
       <br />
     </>
   );

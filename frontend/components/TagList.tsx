@@ -20,20 +20,20 @@ const Tag = styled.li`
 `;
 
 type Props = {
-  items: TagData[];
+  tags: TagData[];
 };
 
-const TagList: React.FC<Props> = ({ items }) => {
+const TagList: React.FC<Props> = ({ tags }) => {
   return (
     <StyledUl>
-      {items.map((item, index) => (
+      {tags.map((tag, index) => (
         <Tag key={index}>
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href={item.link || undefined}
+            href={tag.link || undefined}
           >
-            {item.label}
+            {tag.label}
           </Link>
         </Tag>
       ))}

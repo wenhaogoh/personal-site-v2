@@ -1,21 +1,16 @@
-import { PacmanLoader } from "react-spinners";
+import { FC } from "react";
 
-import { useGetExperiences } from "../hooks/experience";
-import { LoaderContainer, Title } from "./Common";
+import { usePublicContext } from "../contexts/PublicContext";
+import { Title } from "./Common";
 import Experience from "./Experience";
 
-const Experiences: React.FC = () => {
-  const { experiences, isLoading } = useGetExperiences();
+const Experiences: FC = () => {
+  const { experiences } = usePublicContext();
 
   return (
     <>
       <Title>experience.</Title>
-      {isLoading && (
-        <LoaderContainer>
-          <PacmanLoader size={"1rem"} />
-        </LoaderContainer>
-      )}
-      {experiences?.map((experience, index) => (
+      {experiences.map((experience, index) => (
         <Experience key={index} experience={experience} />
       ))}
     </>

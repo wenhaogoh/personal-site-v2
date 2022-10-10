@@ -60,8 +60,3 @@ export const Table = styled.table`
     text-align: left;
   }
 `;
-
-export const LoaderContainer = styled.div`
-  height: fit-content;
-  margin: 1em 0 2em 0;
-`;

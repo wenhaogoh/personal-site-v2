@@ -1,5 +1,5 @@
 import { Post as PostData } from "@prisma/client";
-import React from "react";
+import { FC } from "react";
 
 import { Text, Title } from "./Common";
 
@@ -7,7 +7,7 @@ type Props = {
   post: PostData;
 };
 
-const Post: React.FC<Props> = ({ post }) => {
+const Post: FC<Props> = ({ post }) => {
   return (
     <>
       <Title>{post.title}</Title>

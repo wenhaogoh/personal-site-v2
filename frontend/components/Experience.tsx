@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import { GetExperiencesDto } from "../../shared/types";
@@ -36,7 +36,7 @@ type Props = {
   experience: GetExperiencesDto;
 };
 
-const Experience: React.FC<Props> = ({ experience }) => {
+const Experience: FC<Props> = ({ experience }) => {
   return (
     <>
       <Header>

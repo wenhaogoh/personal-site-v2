@@ -1,7 +1,7 @@
 import { deleteCookie } from "cookies-next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import { ENV } from "../../shared/consts";
@@ -75,7 +75,7 @@ const RightLink = styled(CustomLink)`
   display: inline-block;
 `;
 
-const Navbar: React.FC = () => {
+const Navbar: FC = () => {
   const router = useRouter();
   const isAdmin = router.pathname.startsWith("/admin");
   const links = isAdmin ? adminNavLinks : navLinks;

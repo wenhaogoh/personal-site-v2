@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 export const StyledUl = styled.ul`
@@ -9,7 +9,7 @@ type Props = {
   items: string[];
 };
 
-const TextList: React.FC<Props> = ({ items }) => {
+const TextList: FC<Props> = ({ items }) => {
   return (
     <StyledUl>
       {items.map((item, index) => (

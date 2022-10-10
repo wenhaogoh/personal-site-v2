@@ -1,5 +1,5 @@
 import { Tag as TagData } from "@prisma/client";
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import { Link } from "./Common";
@@ -23,7 +23,7 @@ type Props = {
   tags: TagData[];
 };
 
-const TagList: React.FC<Props> = ({ tags }) => {
+const TagList: FC<Props> = ({ tags }) => {
   return (
     <StyledUl>
       {tags.map((tag, index) => (

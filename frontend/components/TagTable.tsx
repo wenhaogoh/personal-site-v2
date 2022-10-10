@@ -1,5 +1,5 @@
 import { Tag } from "@prisma/client";
-import React, { useMemo } from "react";
+import { FC, useMemo } from "react";
 import { FaPen, FaSave, FaTrash } from "react-icons/fa";
 import {
   CellProps,
@@ -47,7 +47,7 @@ const ActionsContainer = styled.div`
   align-items: center;
 `;
 
-const TagTable: React.FC<Props> = ({ tags }) => {
+const TagTable: FC<Props> = ({ tags }) => {
   const { updateTag, isLoading } = useUpdateTags();
 
   const columns = useMemo<Column<Tag>[]>(

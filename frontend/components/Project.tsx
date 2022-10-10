@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "styled-components";
 
 import { GetProjectsDto } from "../../shared/types";
@@ -15,7 +15,7 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Project: React.FC<Props> = ({ project }) => {
+const Project: FC<Props> = ({ project }) => {
   return (
     <>
       <Header>

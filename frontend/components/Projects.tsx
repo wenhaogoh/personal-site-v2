@@ -1,21 +1,16 @@
-import { PacmanLoader } from "react-spinners";
+import { FC } from "react";
 
-import { useGetProjects } from "../hooks/project";
-import { LoaderContainer, Title } from "./Common";
+import { usePublicContext } from "../contexts/PublicContext";
+import { Title } from "./Common";
 import Project from "./Project";
 
-const Projects: React.FC = () => {
-  const { projects, isLoading } = useGetProjects();
+const Projects: FC = () => {
+  const { projects } = usePublicContext();
 
   return (
     <>
       <Title>projects.</Title>
-      {isLoading && (
-        <LoaderContainer>
-          <PacmanLoader size={"1rem"} />
-        </LoaderContainer>
-      )}
-      {projects?.map((project, index) => (
+      {projects.map((project, index) => (
         <Project key={index} project={project} />
       ))}
     </>

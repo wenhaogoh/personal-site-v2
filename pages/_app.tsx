@@ -11,6 +11,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import Layout from "../frontend/components/Layout";
+import { PublicContextProvider } from "../frontend/contexts/PublicContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
@@ -18,10 +19,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <ToastContainer />
+        <PublicContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </Layout>
+        </PublicContextProvider>
       </Hydrate>
     </QueryClientProvider>
   );

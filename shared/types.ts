@@ -32,7 +32,7 @@ export type CreatePostBody = {
   author: string;
 };
 
-export type UpdateTagQuery = {
+export type IdQuery = {
   id: string;
 };
 
@@ -41,7 +41,7 @@ export type UpdateTagBody = {
   link: string | null;
 };
 
-export type UpdateTagMutation = UpdateTagQuery & UpdateTagBody;
+export type UpdateTagMutation = IdQuery & UpdateTagBody;
 
 export type GetProjectsDto = Project & {
   projectDescriptions: ProjectDescription[];

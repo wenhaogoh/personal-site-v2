@@ -4,7 +4,7 @@ import { QUERY_KEYS } from "../../shared/consts";
 import { Experiences } from "../api";
 
 export const useGetExperiences = () => {
-  const { data: experiences } = useQuery(
+  const { data: experiences, isLoading } = useQuery(
     [QUERY_KEYS.EXPERIENCES],
     Experiences.getExperiences,
     {
@@ -12,5 +12,5 @@ export const useGetExperiences = () => {
     }
   );
 
-  return { experiences };
+  return { experiences, isLoading };
 };

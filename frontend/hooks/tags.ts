@@ -6,11 +6,11 @@ import { UpdateTagMutation } from "../../shared/types";
 import { Tags } from "../api";
 
 export const useGetTags = () => {
-  const { data: tags } = useQuery([QUERY_KEYS.TAGS], Tags.getTags, {
+  const { data: tags, isLoading } = useQuery([QUERY_KEYS.TAGS], Tags.getTags, {
     refetchOnWindowFocus: false,
   });
 
-  return { tags };
+  return { tags, isLoading };
 };
 
 export const useUpdateTags = () => {

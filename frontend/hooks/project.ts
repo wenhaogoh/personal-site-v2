@@ -4,7 +4,7 @@ import { QUERY_KEYS } from "../../shared/consts";
 import { Projects } from "../api";
 
 export const useGetProjects = () => {
-  const { data: projects } = useQuery(
+  const { data: projects, isLoading } = useQuery(
     [QUERY_KEYS.PROJECTS],
     Projects.getProjects,
     {
@@ -12,5 +12,5 @@ export const useGetProjects = () => {
     }
   );
 
-  return { projects };
+  return { projects, isLoading };
 };

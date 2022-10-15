@@ -11,6 +11,7 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import Layout from "../frontend/components/Layout";
+import PublicPreloader from "../frontend/components/PublicPreloader";
 import { PublicContextProvider } from "../frontend/contexts/PublicContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <PublicContextProvider>
+          <PublicPreloader />
           <Layout>
             <Component {...pageProps} />
             <ToastContainer />
